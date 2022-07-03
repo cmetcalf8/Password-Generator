@@ -13,9 +13,8 @@ generateBtn.addEventListener("click", writePassword);
 
 // Write password to the #password input
 function writePassword() {
-  var correctPrompts = getPrompts();
+  var correctPrompts = passwordCriteria();
   var passwordText = document.querySelector("#password");
-
 
   if (correctPrompts) {
     var newPassword = generatePassword();
@@ -34,14 +33,14 @@ function generatePassword() {
   return password;
 }
 
-function getPrompts() {
+function passwordCriteria() {
   randomArray = [];
 
   characterLength = parseInt(prompt("How many characters do you want in your password? (Between 8 and 128.)"));
   
-  if(characterLength <8 || characterLength >128) {
+  if(isNaN(characterLength) || characterLength <8 || characterLength >128) {
     alert("Please input a number between 8 and 128 characters.")
-    return;
+    return false;
   } 
     if(confirm("Do you want lowercase letters in your password?")) {
     randomArray = randomArray.concat(lowercase);
@@ -59,33 +58,7 @@ function getPrompts() {
     randomArray = randomArray.concat(special);
     }
     
-    return;
+    return true;
 
 }
 
-// function passwordCriteria() {
-//   randomArray = [];
-//   characterLength = parseInt(prompt("How many characters do you want in your password? (Between 8 and 128.)"));
-  
-//   if(characterLength <8 || characterLength >128) {
-//     alert("Please input a number between 8 and 128 characters.")
-//     return;
-//   } 
-//     if(confirm("Do you want lowercase letters in your password?")) {
-//     randomArray = randomArray.concat(lowercase);
-//     }
-
-//     if(confirm("Do you want uppercase letters in your password?")) {
-//     randomArray = randomArray.concat(uppercase);
-//     }
-    
-//     if(confirm("Do you want numbers in your password?")) {
-//     randomArray = randomArray.concat(numeric);
-//     }
-    
-//     if(confirm("Do you want special characters in your password?")) {
-//     randomArray = randomArray.concat(special);
-//     }
-    
-//     return;
-//   }
